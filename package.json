@@ -1,7 +1,13 @@
 {
     "description": "Gulp plugin for indent any file",
     "name": "gulp-transform-indent",
-    "version": "0.3.1",
+    "version": "0.3.2",
+
+    "author": {
+        "name": "Eduardo Pérez-Bermejo",
+        "email": "ifedu@outlook.com",
+        "url": "http://www.github.com/ifedu/gulp-transform-indent"
+    },
 
     "dependencies": {
         "gulp": "^3.9.0",
@@ -11,6 +17,11 @@
 
     "engines": {
         "node": ">= 4.0"
+    },
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ifedu/gulp-transform-indent"
     },
 
     "files": [
