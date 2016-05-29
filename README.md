@@ -1,16 +1,17 @@
 > Gulp plugin for indent any file
 
 ```javascript
-$.gulp.task('indent', () => {
+const gulp = require('gulp')
+
+gulp.task('indent', () => {
     const indent = require('gulp-transform-indent')
 
-    return $
-    .gulp
+    return gulp
     .src('app/**/*')
     .pipe(indent({
-        spacesBefore: '  ',
-        spacesAfter: '    '
+        spacesBefore: 2,
+        spacesAfter: 4
     }))
-    .pipe($.gulp.dest('app'))
+    .pipe(gulp.dest('app'))
 })
 ```

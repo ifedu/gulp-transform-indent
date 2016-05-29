@@ -3,6 +3,19 @@
 const through = require('through2')
 
 module.exports = function (options) {
+    const getSpaces = (num) => {
+        let spaces = ''
+
+        for (let i = 0; i < num; i++) {
+            spaces += ' '
+        }
+
+        return spaces
+    }
+
+    const spacesAfter = getSpaces(options.spacesAfter)
+    const spacesBefore = getSpaces(options.spacesBefore)
+
     const convertSpaces = (str, match) => {
         const regExp = new RegExp(match, 'g')
         const finded = str.match(regExp)
@@ -13,7 +26,7 @@ module.exports = function (options) {
         }
 
         for (let i = 0; i < finded.length; i++) {
-            spaces += options.spacesAfter
+            spaces += spacesAfter
         }
 
         return spaces
@@ -21,13 +34,13 @@ module.exports = function (options) {
 
     return through.obj(function (file, enc, cb) {
         if (file.isBuffer() === true) {
-            const regExp = /^[ \t]+/gm
+            const regExp = new RegExp(`^((${spacesBefore})|(\t))+`, 'gm')
             let content = String(file.contents)
 
             content = content.replace(regExp, (str) => {
                 let spaces = ''
 
-                spaces += convertSpaces(str, options.spacesBefore)
+                spaces += convertSpaces(str, spacesBefore)
                 spaces += convertSpaces(str, '\t')
 
                 return spaces
@@ -35,7 +48,6 @@ module.exports = function (options) {
 
             file.contents = new Buffer(content)
         }
-
         cb(null, file)
     })
 }
