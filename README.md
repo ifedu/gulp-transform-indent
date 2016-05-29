@@ -6,11 +6,11 @@ $.gulp.task('indent', () => {
 
     return $
     .gulp
-    .src('app/index.jade')
+    .src('app/**/*')
     .pipe(indent({
         spacesBefore: '  ',
         spacesAfter: '    '
     }))
-    .pipe($.gulp.dest('.build'))
+    .pipe($.gulp.dest('app'))
 })
 ```

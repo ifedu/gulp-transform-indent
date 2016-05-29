@@ -20,19 +20,21 @@ module.exports = function (options) {
     }
 
     return through.obj(function (file, enc, cb) {
-        const regExp = /^[ \t]+/gm
-        let content = String(file.contents)
+        if (file.isBuffer() === true) {
+            const regExp = /^[ \t]+/gm
+            let content = String(file.contents)
 
-        content = content.replace(regExp, (str) => {
-            let spaces = ''
+            content = content.replace(regExp, (str) => {
+                let spaces = ''
 
-            spaces += convertSpaces(str, options.spacesBefore)
-            spaces += convertSpaces(str, '\t')
+                spaces += convertSpaces(str, options.spacesBefore)
+                spaces += convertSpaces(str, '\t')
 
-            return spaces
-        })
+                return spaces
+            })
 
-        file.contents = new Buffer(content)
+            file.contents = new Buffer(content)
+        }
 
         cb(null, file)
     })
