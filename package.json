@@ -1,7 +1,7 @@
 {
     "description": "Gulp plugin for indent any file",
     "name": "gulp-transform-indent",
-    "version": "0.3.0",
+    "version": "0.3.1",
 
     "dependencies": {
         "gulp": "^3.9.0",
@@ -15,5 +15,10 @@
 
     "files": [
         "index.js"
+    ],
+
+    "keywords": [
+        "gulp",
+        "indent"
     ]
 }
